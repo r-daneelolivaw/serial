@@ -74,6 +74,21 @@ class SerialItem extends FieldItemBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getValue() {
+    // Update the values and return them.
+    foreach ($this->properties as $name => $property) {
+      $value = $property->getValue();
+      // Only write NULL values if the whole map is not NULL.
+      if (isset($this->values) || isset($value)) {
+        $this->values[$name] = $value;
+      }
+    }
+    return $this->values;
+  }
+
+  /**
    * Gets the serial for this entity type, bundle, field instance.
    *
    * @return int
