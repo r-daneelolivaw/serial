@@ -2,3 +2,7 @@ services:
   serial.sql_storage:
     class:  Drupal\serial\SerialSQLStorage
     arguments: ['@entity.query', '@entity_type.manager']
+  serializer.normalizer.serial_field_item:
+    class: \Drupal\serial\Normalizer\SerialItemFieldItemNormalizer
+    tags:
+      - {name: normalizer, priority: 50 }
